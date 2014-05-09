@@ -1,0 +1,20 @@
+.top {
+	height: 100%;
+	overflow: hidden;
+}
+
+.top section {
+	height: 480px;
+}
+
+.top .section2 {
+	background: #e67e22;
+}
+
+.top .section3 {
+	background: #27ae60;
+}
+
+.top .section4 {
+	background: #2980b9;
+}
