@@ -8,7 +8,7 @@
 }
 
 .top .section2 {
-	background: #e67e22;
+	background: #2980b9;
 }
 
 .top .section3 {
@@ -16,5 +16,18 @@
 }
 
 .top .section4 {
-	background: #2980b9;
+	background: #8e44ad;
 }
+
+/*
+Google map
+*/
+.map-canvas {
+	height: 320px;
+}
+
+.scrollContent {
+	height: 100%;	
+}
+
+

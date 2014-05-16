@@ -1,0 +1,38 @@
+<div class"scrollContent">
+	<section>
+
+		<script type="text/javascript">
+			var controller;
+			$(document).ready(function() {
+				controller = new ScrollMagic();
+			});
+		</script>
+	</section>
+
+	<section>
+		<div id="trigger1"></div>
+
+		<script type="text/javascript">
+            $(document).ready(function() {
+
+            	var scene = new ScrollScene({triggerElement: "#trigger1"})
+            						.addTo(constroller);
+            	scene.addIndicators();
+            });
+		</script>
+	</section>
+
+	<section>
+		<div id="trigger1"></div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				
+				var scene = new ScrollScene({triggerElement: "#trigger2". duration: 300})
+									.addTo(controller);
+				scene.addIndicators();
+			});	
+		</script>
+	</section>
+
+</div>

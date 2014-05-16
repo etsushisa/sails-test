@@ -7,9 +7,127 @@
 	</section>
 	
 	<section class="section3">
+		<div id="skill_column" style="width: 640px; height: 450px;"></div>
 	</section>
 
 	<section class="section4">
+		<div id="piechart" style="width: 640px; height: 450px;"></div>	
 	</section>
 
+	<div id="map-canvas" class="map-canvas"></div>
+
 </div>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	  // Column Chart
+          var skillData = google.visualization.arrayToDataTable([
+          ['Skill', 'Level', { role: 'style' }],
+          ['JAVA',			5,	"#e74c3c"],
+          ['PHP',			4,	"#2ecc71"],
+          ['MySQL',			4,	"#f1c40f"],
+          ['jQuery, JavaScript',	3,	"#3498db"],
+          ['HTML, CSS',		2,	"#e67e22"],
+          ['C, C++',		3,	'#9b59b6']
+        ]);
+
+        var options = {
+          backgroundColor: 'transparent',
+          axisTitlesPosition: 'none',
+          hAxis: { 
+          	baselineColor: '#ecf0f1',
+          	gridlines: {color: '#ecf0f1', count: 4},
+         	textPosition: 'none',
+    	  },
+          legend: { position: "none" },
+          orientation: 'vertical',
+          tooltip: {
+          	trigger: 'none',
+          },
+          vAxis: {
+          	textStyle: {color: '#ecf0f1'},
+          	testPosition: 'none',
+          },
+        };
+
+        var column = new google.visualization.ColumnChart(document.getElementById('skill_column'));
+        column.draw(skillData, options);
+
+        // Pie Chart
+        var data = google.visualization.arrayToDataTable([
+          ['Technology',	'Share'],
+          ['HTML', 			2],
+          ['CSS',			1],
+          ['jQuery, js',	5],
+          ['Node.js',		4],
+          ['Sails.js',		3],
+        ]);
+
+        var options = {
+          backgroundColor: 'transparent',
+          legend: 'none',
+		  pieSliceText: 'label',
+		  slices: [
+		  	{color: '#e67e22'},
+		  	{color: '#e74c3c'},
+		  	{color: '#3498db'},
+		  	{color: '#2ecc71'},
+		  	{color: '#1abc9c'},
+		  ],
+		  pieSliceBorderColor: '#ecf0f1',
+		  enableInteractivity: false,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en"></script>
+    <script>
+		var map;
+		function initialize() {
+			var styles = [
+				{
+					featureType: 'all',
+					stylers: [
+						{ hue: '#2c3e50' },
+						{ saturation: -100 },
+						{ lightness: -20 }
+					]
+				},
+/*				{
+					featureType: 'road',
+					elementType: 'geometry',
+					stylers: [
+						{ visibility: "off" }
+					]
+				},*/
+/*				{
+					featureType: "poi.business",
+					elementType: "labels",
+					stylers: [
+						{ visibility: "off" }
+					]
+				}*/
+			];
+			var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+	  		var mapOptions = {
+	    		zoom: 12,
+	    		center: new google.maps.LatLng(39.119904, 117.179841),
+	    		scrollwheel: false,
+	    		mapTypeControlOptions: {
+	    			mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+	    		}
+	  		};
+	  		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	  		map.mapTypes.set('map_style', styledMap);
+			map.setMapTypeId('map_style');
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
